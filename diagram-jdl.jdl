@@ -1,0 +1,29 @@
+
+
+entity Teacher {
+  id Long required,
+  name String,
+  document String,
+}
+entity Subject {
+  id Long required,
+  name String,
+  
+}
+
+entity Classroom {
+  id Long required,
+  name String ,
+
+}
+
+entity Student {
+  id Long required,
+  name String,
+}
+
+relationship OneToMany {
+  Teacher{subjects} to Subject
+  Subject{classes} to Classroom
+  Classroom{students} to Student
+}
