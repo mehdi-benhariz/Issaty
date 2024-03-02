@@ -1,0 +1,10 @@
+{
+  "issatyApp": {
+    "AdminRole": {
+      "null": "",
+      "IT": "IT",
+      "FINANCE": "FINANCE",
+      "STUDENT": "STUDENT"
+    }
+  }
+}

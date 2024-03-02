@@ -1,0 +1,10 @@
+{
+  "issatyApp": {
+    "DocType": {
+      "null": "",
+      "EMPLOIS": "EMPLOIS",
+      "COURSESUPPORT": "COURSESUPPORT",
+      "NEWS": "NEWS"
+    }
+  }
+}

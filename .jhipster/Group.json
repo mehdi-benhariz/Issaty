@@ -1,0 +1,57 @@
+{
+  "name": "Group",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "document",
+      "otherEntityRelationshipName": "group",
+      "relationshipName": "emploi",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "group",
+      "relationshipName": "students"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "subject",
+      "otherEntityRelationshipName": "groups",
+      "relationshipName": "subject"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "document",
+      "otherEntityRelationshipName": "toGroups",
+      "relationshipName": "document"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "major",
+      "otherEntityRelationshipName": "groups",
+      "relationshipName": "major"
+    }
+  ],
+  "entityTableName": "jhi_group",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20240302214907"
+}

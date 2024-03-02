@@ -1,0 +1,45 @@
+{
+  "name": "Admin",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "isSuper",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "AdminRole",
+      "fieldValues": "IT,FINANCE,STUDENT"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "profile",
+      "otherEntityRelationshipName": "admin",
+      "relationshipName": "profile",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "admin",
+      "relationshipName": "user",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "admin",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20240302214909"
+}
