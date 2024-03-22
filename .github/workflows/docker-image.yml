@@ -2,17 +2,27 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
-
-  build:
-
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag issaty:$(date +%s)
+      - uses: actions/checkout@v3
+
+      - name: Login to Docker Hub with PAT (secure)
+        # Use a Personal Access Token (PAT) with "repo:push" permission
+        # for secure authentication. See https://docs.docker.com/en/engine/reference/commandline/login/
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD  }}
+
+      - name: Build the Docker image
+        run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/issaty:$(date +%s)
+
+      - name: Push the Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/issaty:$(date +%s)
