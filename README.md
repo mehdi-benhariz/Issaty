@@ -31,6 +31,28 @@ The `npm run` command will list all of the scripts available to run for this pro
 
 ## Using Docker to simplify development (optional)
 
+#### Running using docker
+
+For the time , 2024-03-22 is most updated and stable version. to check other versions : visit [this repo](https://hub.docker.com/repository/docker/mehdieng/issaty/tags?page=1&ordering=last_updated)
+
+```bash
+docker pull mehdieng/issaty:2024-03-22
+```
+
+After installing the image, you can run the container using the following command:
+
+```bash
+docker run -p <your_port>:8081 issaty
+```
+
+Swagger docs can be found at:
+
+```bash
+/api/v2/api-docs/
+```
+
+#### Developing using docker
+
 You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
 You can also fully dockerize your application and all the services that it depends on.
 
