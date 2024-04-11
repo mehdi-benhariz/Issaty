@@ -49,6 +49,8 @@
     "buildTool": "maven",
     "enableHibernateCache": true,
     "reactive": false,
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": ["Profile", "Teacher", "Department", "Subject", "Group", "Student", "Admin", "Demand", "Document", "Major"],
+    "lastLiquibaseTimestamp": 1712877050000
   }
 }
