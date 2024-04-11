@@ -27,26 +27,14 @@ describe('App', () => {
     });
 
     it('/GET up running info OK', () =>
-        request(app.getHttpServer())
-            .get('/management/info')
-            .expect(200)
-            .expect(infoService));
+        request(app.getHttpServer()).get('/management/info').expect(200).expect(infoService));
 
-    it('/GET public roles OK', () =>
-        request(app.getHttpServer())
-            .get('/api/authorities')
-            .expect(200));
+    it('/GET public roles OK', () => request(app.getHttpServer()).get('/api/authorities').expect(200));
 
-    it('/GET public users OK', () =>
-        request(app.getHttpServer())
-            .get('/api/users')
-            .expect(200));
+    it('/GET public users OK', () => request(app.getHttpServer()).get('/api/users').expect(200));
 
     it('/POST authenticate get jwt authenticate OK', () =>
-        request(app.getHttpServer())
-            .post('/api/authenticate')
-            .send(testUserLogin)
-            .expect(201));
+        request(app.getHttpServer()).post('/api/authenticate').send(testUserLogin).expect(201));
 
     afterEach(async () => {
         await app.close();

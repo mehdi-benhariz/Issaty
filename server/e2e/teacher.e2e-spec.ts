@@ -41,11 +41,7 @@ describe('Teacher Controller', () => {
     });
 
     it('/GET all teachers ', async () => {
-        const getEntities: TeacherDTO[] = (
-            await request(app.getHttpServer())
-                .get('/api/teachers')
-                .expect(200)
-        ).body;
+        const getEntities: TeacherDTO[] = (await request(app.getHttpServer()).get('/api/teachers').expect(200)).body;
 
         expect(getEntities).toEqual(entityMock);
     });
@@ -62,10 +58,7 @@ describe('Teacher Controller', () => {
 
     it('/POST create teachers', async () => {
         const createdEntity: TeacherDTO = (
-            await request(app.getHttpServer())
-                .post('/api/teachers')
-                .send(entityMock)
-                .expect(201)
+            await request(app.getHttpServer()).post('/api/teachers').send(entityMock).expect(201)
         ).body;
 
         expect(createdEntity).toEqual(entityMock);
@@ -73,10 +66,7 @@ describe('Teacher Controller', () => {
 
     it('/PUT update teachers', async () => {
         const updatedEntity: TeacherDTO = (
-            await request(app.getHttpServer())
-                .put('/api/teachers')
-                .send(entityMock)
-                .expect(201)
+            await request(app.getHttpServer()).put('/api/teachers').send(entityMock).expect(201)
         ).body;
 
         expect(updatedEntity).toEqual(entityMock);

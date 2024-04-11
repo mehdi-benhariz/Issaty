@@ -46,7 +46,11 @@
       "relationshipName": "major"
     }
   ],
+<<<<<<< HEAD
   "entityTableName": "group",
+=======
+  "entityTableName": "jhi_group",
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
   "dto": "no",
   "pagination": "no",
   "service": "no",
@@ -54,5 +58,10 @@
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
+<<<<<<< HEAD
   "applications": "*"
+=======
+  "applications": "*",
+  "changelogDate": "20240302214907"
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
 }

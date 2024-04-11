@@ -23,6 +23,7 @@ export class AuthService {
         const loginPassword = userLogin.password;
 
         const userFind = await this.userService.findByFields({ where: { login: loginUserName } });
+<<<<<<< HEAD
         if (!userFind) {
             throw new HttpException('Invalid login name!', HttpStatus.BAD_REQUEST);
         }
@@ -33,6 +34,14 @@ export class AuthService {
         }
 
         if (!userFind.activated) {
+=======
+        const validPassword = !!userFind && (await bcrypt.compare(loginPassword, userFind.password));
+        if (!userFind || !validPassword) {
+            throw new HttpException('Invalid login name or password!', HttpStatus.BAD_REQUEST);
+        }
+
+        if (userFind && !userFind.activated) {
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
             throw new HttpException('Your account is not been activated!', HttpStatus.BAD_REQUEST);
         }
 
@@ -41,12 +50,21 @@ export class AuthService {
         const payload: Payload = { id: user.id, username: user.login, authorities: user.authorities };
 
         /* eslint-disable */
+<<<<<<< HEAD
         return {
             id_token: this.jwtService.sign(payload),
         };
     }
 
     /* eslint-enable */
+=======
+    return {
+      id_token: this.jwtService.sign(payload),
+    };
+  }
+
+  /* eslint-enable */
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
     async validateUser(payload: Payload): Promise<UserDTO | undefined> {
         return await this.findUserWithAuthById(payload.id);
     }
@@ -83,23 +101,36 @@ export class AuthService {
         if (userFind) {
             throw new HttpException('Login name already used!', HttpStatus.BAD_REQUEST);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
         userFind = await this.userService.findByFields({ where: { email: newUser.email } });
         if (userFind) {
             throw new HttpException('Email is already in use!', HttpStatus.BAD_REQUEST);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
         newUser.authorities = ['ROLE_USER'];
         const user: UserDTO = await this.userService.save(newUser, newUser.login, true);
         return user;
     }
 
+<<<<<<< HEAD
     async updateUserSettings(userLogin: string, newUserInfo: UserDTO): Promise<void> {
+=======
+    async updateUserSettings(userLogin: string, newUserInfo: UserDTO): Promise<UserDTO> {
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
         const userFind: UserDTO = await this.userService.findByFields({ where: { login: userLogin } });
         if (!userFind) {
             throw new HttpException('Invalid login name!', HttpStatus.BAD_REQUEST);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
         const userFindEmail: UserDTO = await this.userService.findByFields({ where: { email: newUserInfo.email } });
         if (userFindEmail && newUserInfo.email !== userFind.email) {
             throw new HttpException('Email is already in use!', HttpStatus.BAD_REQUEST);
@@ -110,6 +141,10 @@ export class AuthService {
         userFind.email = newUserInfo.email;
         userFind.langKey = newUserInfo.langKey;
         await this.userService.save(userFind, userLogin);
+<<<<<<< HEAD
+=======
+        return;
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
     }
 
     async getAllUsers(options: FindManyOptions<UserDTO>): Promise<[UserDTO[], number]> {

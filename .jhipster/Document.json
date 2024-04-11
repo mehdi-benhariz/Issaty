@@ -57,5 +57,10 @@
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
+<<<<<<< HEAD
   "applications": "*"
+=======
+  "applications": "*",
+  "changelogDate": "20240302214911"
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
 }

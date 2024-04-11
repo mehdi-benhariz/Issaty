@@ -1,0 +1,10 @@
+{
+  "issatyApp": {
+    "FileType": {
+      "null": "",
+      "PDF": "PDF",
+      "IMAGE": "IMAGE",
+      "VIDEO": "VIDEO"
+    }
+  }
+}

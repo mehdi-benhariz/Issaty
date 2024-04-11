@@ -62,10 +62,14 @@ describe('Subject Controller', () => {
 
     it('/POST create subjects', async () => {
         const createdEntity: SubjectDTO = (
+<<<<<<< HEAD
             await request(app.getHttpServer())
                 .post('/api/subjects')
                 .send(entityMock)
                 .expect(201)
+=======
+            await request(app.getHttpServer()).post('/api/subjects').send(entityMock).expect(201)
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
         ).body;
 
         expect(createdEntity).toEqual(entityMock);
@@ -73,10 +77,14 @@ describe('Subject Controller', () => {
 
     it('/PUT update subjects', async () => {
         const updatedEntity: SubjectDTO = (
+<<<<<<< HEAD
             await request(app.getHttpServer())
                 .put('/api/subjects')
                 .send(entityMock)
                 .expect(201)
+=======
+            await request(app.getHttpServer()).put('/api/subjects').send(entityMock).expect(201)
+>>>>>>> b85e89a3fd4fbb87748d01b798aeab494ad73d9a
         ).body;
 
         expect(updatedEntity).toEqual(entityMock);

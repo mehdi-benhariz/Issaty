@@ -11,7 +11,7 @@ export class StudentMapper {
         }
         const entity = new Student();
         const fields = Object.getOwnPropertyNames(entityDTO);
-        fields.forEach(field => {
+        fields.forEach((field) => {
             entity[field] = entityDTO[field];
         });
         return entity;
@@ -25,7 +25,7 @@ export class StudentMapper {
 
         const fields = Object.getOwnPropertyNames(entity);
 
-        fields.forEach(field => {
+        fields.forEach((field) => {
             entityDTO[field] = entity[field];
         });
 

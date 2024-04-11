@@ -85,7 +85,7 @@ function registerAsEurekaService(): void {
             },
         });
         client.logger.level('debug');
-        client.start(error => logger.log(error || 'Eureka registration complete'));
+        client.start((error) => logger.log(error || 'Eureka registration complete'));
     }
 }
 

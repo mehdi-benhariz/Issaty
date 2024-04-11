@@ -15,10 +15,7 @@ export class Teacher extends BaseEntity {
     @Column({ name: 'document', nullable: true })
     document: string;
 
-    @OneToMany(
-        type => Subject,
-        other => other.teacher,
-    )
+    @OneToMany((type) => Subject, (other) => other.teacher)
     subjects: Subject[];
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

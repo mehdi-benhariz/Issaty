@@ -20,9 +20,43 @@ You will only need to run this command when dependencies change in [package.json
     npm install
     cd server && npm install
 
+We use npm scripts and [Webpack][] as our build system.
+
+Run the following commands in two separate terminals to create a blissful development experience where your browser
+auto-refreshes when files change on your hard drive.
+
+    cd server && npm start
+    npm start
+
+Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
+specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
+Add the `help` flag on any command to see how you can use it. For example, `npm help update`.
+
 The `npm run` command will list all of the scripts available to run for this project.
 
 ## Using Docker to simplify development (optional)
+
+#### Running using docker
+
+For the time , 2024-03-22 is most updated and stable version. to check other versions : visit [this repo](https://hub.docker.com/repository/docker/mehdieng/issaty/tags?page=1&ordering=last_updated)
+
+```bash
+docker pull mehdieng/issaty:2024-03-22
+```
+
+After installing the image, you can run the container using the following command:
+
+```bash
+docker run -p <your_port>:8081 issaty
+```
+
+Swagger docs can be found at:
+
+```bash
+/api/v2/api-docs/
+```
+
+#### Developing using docker
 
 You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
 You can also fully dockerize your application and all the services that it depends on.
@@ -65,6 +99,43 @@ You can use the default secret created from the app, or change it.
 So to get a token, you have to pass a POST request on the _api/authenticate_ url with **UserLoginDTO** as body.
 For this you can use **swagger ui** on **/api/v2/api-docs** path, or the client login page (if you have generated it).
 
+# <<<<<<< HEAD
+
+### PWA Support
+
+JHipster ships with PWA (Progressive Web App) support, and it's disabled by default. One of the main components of a PWA is a service worker.
+
+The service worker initialization code is commented out by default. To enable it, uncomment the following code in `src/main/webapp/index.html`:
+
+```html
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js').then(function () {
+      console.log('Service Worker Registered');
+    });
+  }
+</script>
+```
+
+Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
+
+### Managing dependencies
+
+For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
+
+    npm install --save --save-exact leaflet
+
+To benefit from TypeScript type definitions from [DefinitelyTyped][] repository in development, you would run following command:
+
+    npm install --save-dev --save-exact @types/leaflet
+
+Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
+Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
+
+For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
+
+> > > > > > > b85e89a3fd4fbb87748d01b798aeab494ad73d9a
+
 ### Using NestJS CLI
 
 You can also use [NestJS CLI][] to generate some custom server code.
@@ -95,6 +166,21 @@ The build folder with all compiled sources will be **server/dist**.
 
 > For more explanation about full stack server/client build refer to [server/README.md](server/README.md)
 
+# <<<<<<< HEAD
+
+### Client tests
+
+Unit tests are run by [Jest][] and written with [Jasmine][]. They're located in [src/test/javascript/](src/test/javascript/) and can be run with:
+
+    npm test
+
+UI end-to-end tests are powered by [Protractor][], which is built on top of WebDriverJS. They're located in [src/test/javascript/e2e](src/test/javascript/e2e)
+and can be run in a terminal (`npm run e2e`) after that the full application is run (`npm run start:app`).
+
+For more information, refer to the [Running tests page][].
+
+> > > > > > > b85e89a3fd4fbb87748d01b798aeab494ad73d9a
+
 ### Code quality
 
 Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
@@ -124,3 +210,14 @@ For more information, refer to the [Code quality page][].
 [jest]: https://facebook.github.io/jest/
 [nestjs]: https://nestjs.com/
 [nestjs cli]: https://docs.nestjs.com/cli/usages
+
+# <<<<<<< HEAD
+
+[angular cli]: https://cli.angular.io/
+[browsersync]: http://www.browsersync.io/
+[jasmine]: http://jasmine.github.io/2.0/introduction.html
+[protractor]: https://angular.github.io/protractor/
+[leaflet]: http://leafletjs.com/
+[definitelytyped]: http://definitelytyped.org/
+
+> > > > > > > b85e89a3fd4fbb87748d01b798aeab494ad73d9a

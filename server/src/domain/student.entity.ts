@@ -12,7 +12,7 @@ export class Student extends BaseEntity {
     @Column({ name: 'name', nullable: true })
     name: string;
 
-    @ManyToOne(type => Classroom)
+    @ManyToOne((type) => Classroom)
     classroom: Classroom;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

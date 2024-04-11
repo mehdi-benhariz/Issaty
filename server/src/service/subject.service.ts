@@ -30,7 +30,7 @@ export class SubjectService {
         const resultList = await this.subjectRepository.findAndCount(options);
         const subjectDTO: SubjectDTO[] = [];
         if (resultList && resultList[0]) {
-            resultList[0].forEach(subject => subjectDTO.push(SubjectMapper.fromEntityToDTO(subject)));
+            resultList[0].forEach((subject) => subjectDTO.push(SubjectMapper.fromEntityToDTO(subject)));
             resultList[0] = subjectDTO;
         }
         return resultList;

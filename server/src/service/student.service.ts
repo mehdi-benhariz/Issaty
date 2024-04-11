@@ -30,7 +30,7 @@ export class StudentService {
         const resultList = await this.studentRepository.findAndCount(options);
         const studentDTO: StudentDTO[] = [];
         if (resultList && resultList[0]) {
-            resultList[0].forEach(student => studentDTO.push(StudentMapper.fromEntityToDTO(student)));
+            resultList[0].forEach((student) => studentDTO.push(StudentMapper.fromEntityToDTO(student)));
             resultList[0] = studentDTO;
         }
         return resultList;

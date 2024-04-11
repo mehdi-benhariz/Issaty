@@ -29,7 +29,7 @@ export class TeacherService {
         const resultList = await this.teacherRepository.findAndCount(options);
         const teacherDTO: TeacherDTO[] = [];
         if (resultList && resultList[0]) {
-            resultList[0].forEach(teacher => teacherDTO.push(TeacherMapper.fromEntityToDTO(teacher)));
+            resultList[0].forEach((teacher) => teacherDTO.push(TeacherMapper.fromEntityToDTO(teacher)));
             resultList[0] = teacherDTO;
         }
         return resultList;
