@@ -11,45 +11,42 @@ import { AuthService } from '../../service/auth.service';
 @UseInterceptors(LoggingInterceptor, ClassSerializerInterceptor)
 @ApiUseTags('public-user-controller')
 export class PublicUserController {
+    logger = new Logger('PublicUserController');
 
-  logger = new Logger('PublicUserController');
+    constructor(private readonly authService: AuthService) {}
 
-  constructor(private readonly authService: AuthService) { }
+    @Get('/users')
+    @ApiOperation({ title: 'Get the list of users' })
+    @ApiResponse({
+        status: 200,
+        description: 'List all users records',
+        type: UserDTO,
+    })
+    async getAllPublicUsers(@Req() req: Request): Promise<UserDTO[]> {
+        const sortField = req.query.sort;
+        const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, sortField);
+        const [results, count] = await this.authService.getAllUsers({
+            skip: +pageRequest.page * pageRequest.size,
+            take: +pageRequest.size,
+            order: pageRequest.sort.asOrder(),
+        });
+        HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
+        return results;
+    }
 
-  @Get('/users')
-  @ApiOperation({ title: 'Get the list of users' })
-  @ApiResponse({
-      status: 200,
-      description: 'List all users records',
-      type: UserDTO,
-  })
-  async getAllPublicUsers(@Req() req: Request): Promise<UserDTO[]> {
-      const sortField = req.query.sort;
-      const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, sortField);
-      const [results, count] = await this.authService.getAllUsers({
-          skip: +pageRequest.page * pageRequest.size,
-          take: +pageRequest.size,
-          order: pageRequest.sort.asOrder()
-      });
-      HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
-      return results;
-  }
-
-
-  @Get('/authorities')
-  @ApiOperation({ title: 'Get the list of user roles' })
-  @ApiResponse({
-    status: 200,
-    description: 'List all user roles',
-    type: 'string',
-    isArray: true,
-  })
-  getAuthorities(@Req() req: any): any {
-    const user: any = req.user;
-    if (!user) {
-        return [];
-     }
-    return user.authorities;
-  }
-
+    @Get('/authorities')
+    @ApiOperation({ title: 'Get the list of user roles' })
+    @ApiResponse({
+        status: 200,
+        description: 'List all user roles',
+        type: 'string',
+        isArray: true,
+    })
+    getAuthorities(@Req() req: any): any {
+        const user: any = req.user;
+        if (!user) {
+            return [];
+        }
+        return user.authorities;
+    }
 }

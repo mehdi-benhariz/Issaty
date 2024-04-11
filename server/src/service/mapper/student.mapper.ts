@@ -1,37 +1,34 @@
 import { Student } from '../../domain/student.entity';
 import { StudentDTO } from '../dto/student.dto';
 
-
 /**
  * A Student mapper object.
  */
 export class StudentMapper {
-
-  static fromDTOtoEntity (entityDTO: StudentDTO): Student {
-    if (!entityDTO) {
-      return;
+    static fromDTOtoEntity(entityDTO: StudentDTO): Student {
+        if (!entityDTO) {
+            return;
+        }
+        const entity = new Student();
+        const fields = Object.getOwnPropertyNames(entityDTO);
+        fields.forEach(field => {
+            entity[field] = entityDTO[field];
+        });
+        return entity;
     }
-    let entity = new Student();
-    const fields = Object.getOwnPropertyNames(entityDTO);
-    fields.forEach(field => {
-        entity[field] = entityDTO[field];
-    });
-    return entity;
 
-  }
+    static fromEntityToDTO(entity: Student): StudentDTO {
+        if (!entity) {
+            return;
+        }
+        const entityDTO = new StudentDTO();
 
-  static fromEntityToDTO (entity: Student): StudentDTO {
-    if (!entity) {
-      return;
+        const fields = Object.getOwnPropertyNames(entity);
+
+        fields.forEach(field => {
+            entityDTO[field] = entity[field];
+        });
+
+        return entityDTO;
     }
-    let entityDTO = new StudentDTO();
-
-    const fields = Object.getOwnPropertyNames(entity);
-
-    fields.forEach(field => {
-        entityDTO[field] = entity[field];
-    });
-
-    return entityDTO;
-  }
 }

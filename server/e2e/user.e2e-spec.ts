@@ -18,7 +18,7 @@ describe('User', () => {
         login: 'userTestLogin',
         firstName: 'UserTest',
         lastName: 'UserTest',
-        email: 'usertest@localhost.it'
+        email: 'usertest@localhost.it',
     };
 
     const testUserDTO: UserDTO = {
@@ -26,7 +26,7 @@ describe('User', () => {
         firstName: 'UserTest',
         lastName: 'UserTest',
         email: 'usertest@localhost.it',
-        password: 'userTestLogin'
+        password: 'userTestLogin',
     };
 
     beforeEach(async () => {
@@ -65,7 +65,9 @@ describe('User', () => {
     it('/PUT update user', async () => {
         testUserDTO.login = 'TestUserUpdate';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { password: savedPassword, lastModifiedDate: savedLastModifiedDate, ...savedUser } = await service.save(testUserDTO);
+        const { password: savedPassword, lastModifiedDate: savedLastModifiedDate, ...savedUser } = await service.save(
+            testUserDTO,
+        );
         savedUser.firstName = 'Updated Name';
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

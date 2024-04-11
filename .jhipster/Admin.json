@@ -1,5 +1,5 @@
 {
-  "name": "Student",
+  "name": "Admin",
   "fields": [
     {
       "fieldName": "id",
@@ -7,37 +7,34 @@
       "fieldValidateRules": [
         "required"
       ]
+    },
+    {
+      "fieldName": "isSuper",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "AdminRole",
+      "fieldValues": "IT,FINANCE,STUDENT"
     }
   ],
   "relationships": [
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "profile",
-      "otherEntityRelationshipName": "student",
+      "otherEntityRelationshipName": "admin",
       "relationshipName": "profile",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "user",
-      "otherEntityRelationshipName": "student",
+      "otherEntityRelationshipName": "admin",
       "relationshipName": "user",
       "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "demand",
-      "otherEntityRelationshipName": "student",
-      "relationshipName": "demands"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "group",
-      "otherEntityRelationshipName": "students",
-      "relationshipName": "group"
     }
   ],
-  "entityTableName": "student",
+  "entityTableName": "admin",
   "dto": "no",
   "pagination": "no",
   "service": "no",
@@ -45,6 +42,5 @@
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
-  "applications": "*",
-  "changelogDate": "20240219222815"
+  "applications": "*"
 }

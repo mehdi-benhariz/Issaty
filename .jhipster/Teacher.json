@@ -4,18 +4,46 @@
     {
       "fieldName": "id",
       "fieldType": "Long",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
-      "fieldName": "name",
-      "fieldType": "String"
+      "fieldName": "grade",
+      "fieldType": "Grade",
+      "fieldValues": "A,B,C"
     },
     {
-      "fieldName": "document",
+      "fieldName": "isChef",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "bureau",
       "fieldType": "String"
     }
   ],
   "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "profile",
+      "otherEntityRelationshipName": "teacher",
+      "relationshipName": "profile",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "teacher",
+      "relationshipName": "user",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "department",
+      "otherEntityRelationshipName": "teacher",
+      "relationshipName": "chefOfDepartment",
+      "ownerSide": true
+    },
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "subject",

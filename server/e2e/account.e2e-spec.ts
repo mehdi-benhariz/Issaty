@@ -25,7 +25,7 @@ describe('Account', () => {
         login: 'userlogged',
         email: 'userlogged@localhost.it',
         password: 'userloggedPassword',
-        activated: true
+        activated: true,
     };
 
     const testPasswordChange: PasswordChangeDTO = {
@@ -35,15 +35,15 @@ describe('Account', () => {
 
     let userAuthenticated: UserDTO;
 
-    const authGuardMock = { canActivate: (context: ExecutionContext): any => {
-        const req = context.switchToHttp().getRequest();
-        req.user = testUserAuthenticated;
-        return true;
-    },
+    const authGuardMock = {
+        canActivate: (context: ExecutionContext): any => {
+            const req = context.switchToHttp().getRequest();
+            req.user = testUserAuthenticated;
+            return true;
+        },
     };
 
     const rolesGuardMock = { canActivate: (): any => true };
-
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -80,29 +80,31 @@ describe('Account', () => {
             .expect(500);
     });
 
-
     it('/GET authenticate', async () => {
-        const loginValue: any = (await request(app.getHttpServer())
-            .get('/api/authenticate')
-            .expect(200)).text;
+        const loginValue: any = (
+            await request(app.getHttpServer())
+                .get('/api/authenticate')
+                .expect(200)
+        ).text;
 
         expect(loginValue).toEqual(testUserAuthenticated.login);
     });
 
     it('/GET account', async () => {
-
-        const loggedUser: any = JSON.parse(( await request(app.getHttpServer())
-            .get('/api/account')
-            .expect(200)).text);
+        const loggedUser: any = JSON.parse(
+            (
+                await request(app.getHttpServer())
+                    .get('/api/account')
+                    .expect(200)
+            ).text,
+        );
 
         expect(loggedUser.id).toEqual(userAuthenticated.id);
         expect(loggedUser.login).toEqual(userAuthenticated.login);
         expect(loggedUser.email).toEqual(userAuthenticated.email);
-
     });
 
     it('/POST account update settings', async () => {
-
         const savedTestUser: UserDTO = {
             firstName: 'updateFirstName',
             lastName: 'updateLastName',
@@ -113,10 +115,11 @@ describe('Account', () => {
             .send(savedTestUser)
             .expect(201);
 
-        const updatedUserSettings: UserDTO = await service.findByFields({ where: { login: testUserAuthenticated.login } });
+        const updatedUserSettings: UserDTO = await service.findByFields({
+            where: { login: testUserAuthenticated.login },
+        });
         expect(updatedUserSettings.firstName).toEqual(savedTestUser.firstName);
         expect(updatedUserSettings.lastName).toEqual(savedTestUser.lastName);
-
     });
 
     it('/POST change password', async () => {
@@ -125,11 +128,15 @@ describe('Account', () => {
             .send(testPasswordChange)
             .expect(201);
 
-        const successFullyLoggedInWithNewPassword = await authService.login(
-            {
+        const successFullyLoggedInWithNewPassword = await authService
+            .login({
                 username: testUserAuthenticated.login,
-                password: testPasswordChange.newPassword
-            }).then(() => true, () => false);
+                password: testPasswordChange.newPassword,
+            })
+            .then(
+                () => true,
+                () => false,
+            );
 
         expect(successFullyLoggedInWithNewPassword).toEqual(true);
     });

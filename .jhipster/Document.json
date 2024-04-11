@@ -1,0 +1,61 @@
+{
+  "name": "Document",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "PENDING,APPROVED,REJECTED"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "DocType",
+      "fieldValues": "EMPLOIS,COURSESUPPORT,NEWS"
+    },
+    {
+      "fieldName": "file",
+      "fieldType": "FileType",
+      "fieldValues": "PDF,IMAGE,VIDEO"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "teacher",
+      "otherEntityRelationshipName": "document",
+      "relationshipName": "owner",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "group",
+      "otherEntityRelationshipName": "document",
+      "relationshipName": "toGroups"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "teacher",
+      "otherEntityRelationshipName": "document",
+      "relationshipName": "teacher"
+    }
+  ],
+  "entityTableName": "document",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*"
+}

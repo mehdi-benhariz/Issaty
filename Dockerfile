@@ -12,7 +12,7 @@ COPY . .
 
 WORKDIR server
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # install client deps
 

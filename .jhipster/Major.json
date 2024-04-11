@@ -1,15 +1,15 @@
 {
-  "name": "Subject",
+  "name": "Major",
   "fields": [
     {
-      "fieldName": "id",
-      "fieldType": "Long",
+      "fieldName": "name",
+      "fieldType": "String",
       "fieldValidateRules": [
         "required"
       ]
     },
     {
-      "fieldName": "name",
+      "fieldName": "description",
       "fieldType": "String"
     }
   ],
@@ -17,17 +17,11 @@
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "group",
-      "otherEntityRelationshipName": "subject",
+      "otherEntityRelationshipName": "major",
       "relationshipName": "groups"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "teacher",
-      "otherEntityRelationshipName": "subjects",
-      "relationshipName": "teacher"
     }
   ],
-  "entityTableName": "subject",
+  "entityTableName": "major",
   "dto": "no",
   "pagination": "no",
   "service": "no",
@@ -35,6 +29,5 @@
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
-  "applications": "*",
-  "changelogDate": "20240219222813"
+  "applications": "*"
 }

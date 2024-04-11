@@ -8,13 +8,13 @@ describe('App', () => {
     let app: INestApplication;
 
     const infoService = {
-         activeProfiles : 'dev',
+        activeProfiles: 'dev',
         'display-ribbon-on-profiles': 'dev',
     };
     const testUserLogin: UserLoginDTO = {
         username: 'system',
         password: 'system',
-        rememberMe: true
+        rememberMe: true,
     };
 
     beforeEach(async () => {
@@ -26,23 +26,27 @@ describe('App', () => {
         await app.init();
     });
 
-    it('/GET up running info OK', () => request(app.getHttpServer())
-        .get('/management/info')
-        .expect(200)
-        .expect(infoService));
+    it('/GET up running info OK', () =>
+        request(app.getHttpServer())
+            .get('/management/info')
+            .expect(200)
+            .expect(infoService));
 
-    it('/GET public roles OK', () => request(app.getHttpServer())
-        .get('/api/authorities')
-        .expect(200));
+    it('/GET public roles OK', () =>
+        request(app.getHttpServer())
+            .get('/api/authorities')
+            .expect(200));
 
-    it('/GET public users OK', () => request(app.getHttpServer())
-        .get('/api/users')
-        .expect(200));
+    it('/GET public users OK', () =>
+        request(app.getHttpServer())
+            .get('/api/users')
+            .expect(200));
 
-    it('/POST authenticate get jwt authenticate OK', () => request(app.getHttpServer())
-        .post('/api/authenticate')
-        .send(testUserLogin)
-        .expect(201));
+    it('/POST authenticate get jwt authenticate OK', () =>
+        request(app.getHttpServer())
+            .post('/api/authenticate')
+            .send(testUserLogin)
+            .expect(201));
 
     afterEach(async () => {
         await app.close();

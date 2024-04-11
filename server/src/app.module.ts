@@ -11,22 +11,20 @@ import { StudentModule } from './module/student.module';
 // jhipster-needle-add-service-module-to-main-import - JHipster will import service modules here, do not remove
 
 @Module({
-  imports: [
-  TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
-    AuthModule,
-  TeacherModule,
-  SubjectModule,
-  ClassroomModule,
-  StudentModule,
-  // jhipster-needle-add-entity-module-to-main - JHipster will add entity modules here, do not remove
-  ],
-  controllers: [
-  // jhipster-needle-add-controller-module-to-main - JHipster will add controller modules here, do not remove
-  ],
-  providers: [
-  // jhipster-needle-add-service-module-to-main - JHipster will add service modules here, do not remove
-  ],
+    imports: [
+        TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
+        AuthModule,
+        TeacherModule,
+        SubjectModule,
+        ClassroomModule,
+        StudentModule,
+        // jhipster-needle-add-entity-module-to-main - JHipster will add entity modules here, do not remove
+    ],
+    controllers: [
+        // jhipster-needle-add-controller-module-to-main - JHipster will add controller modules here, do not remove
+    ],
+    providers: [
+        // jhipster-needle-add-service-module-to-main - JHipster will add service modules here, do not remove
+    ],
 })
-export class AppModule  {
-
-}
+export class AppModule {}

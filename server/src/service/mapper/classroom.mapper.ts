@@ -1,37 +1,34 @@
 import { Classroom } from '../../domain/classroom.entity';
 import { ClassroomDTO } from '../dto/classroom.dto';
 
-
 /**
  * A Classroom mapper object.
  */
 export class ClassroomMapper {
-
-  static fromDTOtoEntity (entityDTO: ClassroomDTO): Classroom {
-    if (!entityDTO) {
-      return;
+    static fromDTOtoEntity(entityDTO: ClassroomDTO): Classroom {
+        if (!entityDTO) {
+            return;
+        }
+        const entity = new Classroom();
+        const fields = Object.getOwnPropertyNames(entityDTO);
+        fields.forEach(field => {
+            entity[field] = entityDTO[field];
+        });
+        return entity;
     }
-    let entity = new Classroom();
-    const fields = Object.getOwnPropertyNames(entityDTO);
-    fields.forEach(field => {
-        entity[field] = entityDTO[field];
-    });
-    return entity;
 
-  }
+    static fromEntityToDTO(entity: Classroom): ClassroomDTO {
+        if (!entity) {
+            return;
+        }
+        const entityDTO = new ClassroomDTO();
 
-  static fromEntityToDTO (entity: Classroom): ClassroomDTO {
-    if (!entity) {
-      return;
+        const fields = Object.getOwnPropertyNames(entity);
+
+        fields.forEach(field => {
+            entityDTO[field] = entity[field];
+        });
+
+        return entityDTO;
     }
-    let entityDTO = new ClassroomDTO();
-
-    const fields = Object.getOwnPropertyNames(entity);
-
-    fields.forEach(field => {
-        entityDTO[field] = entity[field];
-    });
-
-    return entityDTO;
-  }
 }

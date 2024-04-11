@@ -1,29 +1,122 @@
-
+entity Profile {
+   firstName String required,
+   lastName  String required,
+   birthDate  Date,
+   address String,
+   profilePic  String,
+   email String
+   
+   
+}
+entity User  {
+   CIN String required,
+   password String required,
+   isDeleted Boolean,
+   isBanned Boolean
+}
 
 entity Teacher {
   id Long required,
-  name String,
-  document String,
+  grade Grade ,
+  isChef Boolean,
+  bureau String
+}
+
+entity Department {
+   id Long required,
+   name String
 }
 entity Subject {
   id Long required,
-  name String,
+  name String
   
 }
 
-entity Classroom {
+entity Group {
   id Long required,
-  name String ,
-
+  name String
 }
 
 entity Student {
-  id Long required,
-  name String,
+  id Long required
+  
 }
 
+entity Admin {
+  id Long required,
+  isSuper Boolean,
+  role AdminRole
+}
+entity Demand{
+   id Long required,
+   status Status
+}
+entity Document {
+    id Long required,
+	status Status,
+    type DocType,
+    file FileType,
+    url String
+}
+entity Major {
+   name String required,
+   description String
+}
+enum Status {
+  PENDING,
+  APPROVED,
+  REJECTED
+}
+
+enum DocType {
+  EMPLOIS,
+  COURSESUPPORT,
+  NEWS
+}
+
+enum FileType {
+    PDF,
+    IMAGE,
+    VIDEO
+}
+
+enum AdminRole {
+   IT,
+   FINANCE,
+   STUDENT
+}
+
+enum Grade{
+  A,
+  B,
+  C
+}
+
+relationship ManyToOne{
+   Document{teacher} to Teacher
+
+}
 relationship OneToMany {
-  Teacher{subjects} to Subject
-  Subject{classes} to Classroom
-  Classroom{students} to Student
+  Subject{groups} to Group,
+  Group{students} to Student,
+  Student{demands} to Demand,
+  Document{toGroups} to Group,
+
+  Teacher{subjects} to Subject,
+  Major{groups} to Group,
+}
+
+relationship OneToOne {
+  Teacher {profile} to Profile,
+  Student {profile} to Profile,
+  Admin {profile} to Profile,
+
+  Teacher {user} to User,
+  Student {user} to User,
+  Admin {user} to User,
+
+  Teacher{chefOfDepartment} to Department,
+
+  Group{emploi} to Document,
+  Document{owner} to Teacher
 }

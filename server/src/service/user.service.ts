@@ -13,7 +13,7 @@ export class UserService {
 
     async findById(id: number): Promise<UserDTO | undefined> {
         const result = await this.userRepository.findOne(id);
-        return UserMapper.fromEntityToDTO(this.flatAuthorities(result))
+        return UserMapper.fromEntityToDTO(this.flatAuthorities(result));
     }
 
     async findByFields(options: FindOneOptions<UserDTO>): Promise<UserDTO | undefined> {
@@ -44,7 +44,7 @@ export class UserService {
             await transformPassword(user);
         }
         if (creator) {
-            if (!user.createdBy ) {
+            if (!user.createdBy) {
                 user.createdBy = creator;
             }
             user.lastModifiedBy = creator;
@@ -59,7 +59,7 @@ export class UserService {
 
     async delete(userDTO: UserDTO): Promise<UserDTO | undefined> {
         const user = UserMapper.fromDTOtoEntity(userDTO);
-        const result = await this.userRepository.remove(user)
+        const result = await this.userRepository.remove(user);
         return UserMapper.fromEntityToDTO(result);
     }
 

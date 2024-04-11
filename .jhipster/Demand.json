@@ -1,0 +1,34 @@
+{
+  "name": "Demand",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "PENDING,APPROVED,REJECTED"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "demands",
+      "relationshipName": "student"
+    }
+  ],
+  "entityTableName": "demand",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*"
+}

@@ -23,7 +23,6 @@ function ormConfig(): TypeOrmModuleOptions {
         migrationsRun: commonConf.MIGRATIONS_RUN,
     };
 
-
     if (process.env.BACKEND_ENV === 'prod') {
         ormconfig = {
             name: 'default',
@@ -43,18 +42,18 @@ function ormConfig(): TypeOrmModuleOptions {
     }
 
     if (process.env.BACKEND_ENV === 'test') {
-    ormconfig = {
-        name: 'default',
-        type: 'sqlite',
-        database: ':memory:',
-        keepConnectionAlive: true,
-        logging: true,
-        synchronize: true,
-        entities: commonConf.ENTITIES,
-        migrations: commonConf.MIGRATIONS,
-        cli: commonConf.CLI,
-        migrationsRun: commonConf.MIGRATIONS_RUN,
-    };
+        ormconfig = {
+            name: 'default',
+            type: 'sqlite',
+            database: ':memory:',
+            keepConnectionAlive: true,
+            logging: true,
+            synchronize: true,
+            entities: commonConf.ENTITIES,
+            migrations: commonConf.MIGRATIONS,
+            cli: commonConf.CLI,
+            migrationsRun: commonConf.MIGRATIONS_RUN,
+        };
     }
     return ormconfig;
 }
