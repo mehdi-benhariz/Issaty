@@ -102,7 +102,8 @@ export class AuthService {
 
         const userFindEmail: UserDTO = await this.userService.findByFields({ where: { email: newUserInfo.email } });
         if (userFindEmail && newUserInfo.email !== userFind.email) {
-        {throw new HttpException('Email is already in use!', HttpStatus.BAD_REQUEST);}
+            throw new HttpException('Email is already in use!', HttpStatus.BAD_REQUEST);
+        }
 
         userFind.firstName = newUserInfo.firstName;
         userFind.lastName = newUserInfo.lastName;
